@@ -3,7 +3,7 @@ name: Bug report
 about: Create a report to help us improve
 title: ""
 labels: bug, needs triage
-assignees: trufflesecurity/product-eng
+assignees: ing-bank/KAET
 ---
 
 Please review the [Community Note](https://github.com/ing-bank/kal/blob/master/.github/community_note.md) before submitting
