@@ -1,9 +1,3 @@
-GOCDM=go
-GOBUILD=$(GOCDM) build
-GOMOD=$(GOCDM) mod
-BINARY=kal
-GOHOME=~/go
-
 .PHONY: install
 .PHONY: test
 .PHONY: lint
