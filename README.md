@@ -1,6 +1,6 @@
 # Kubernetes Authorization Listing - KAL
 
-KAL is meant to list every permission of a Kubernetes user, service account token, kubeconfig authentication, or a JWT token.
+KAL can be used to list every permission of a Kubernetes user, service account token, kubeconfig authentication, or a JWT token.
 
 This CLI connects to the provided Kubernetes Cluster, list all resources, and for each resource tests if the provided authentication has access in the resource. The test is performed using the [SelfSubjectAccessReview](https://kubernetes.io/docs/reference/kubernetes-api/authorization-resources/self-subject-access-review-v1/) request.
 
@@ -29,7 +29,7 @@ KAL searches for authentication credentials in the following order:
 
 1. Provided in `-token` argument
 2. Search for a kubeconfig file (default location `~/.kube/config`)
-3. Assume it is running inside a POD and using the credentials in the `/var/run/secrets/kubernetes.io/serviceaccount/` folder.
+3. Assume it is running inside a POD and using the credentials in the `/var/run/secrets/kubernetes.io/serviceaccount/` folder
 
 #### 2. Manual authentication
 
@@ -100,7 +100,7 @@ kal -as '<user>'
 
 #### Verbose & Silent
 
-Select the verbosity of the output
+Select the verbosity of the output.
 
 ```sh
 kal -verbose/-silent
@@ -142,7 +142,7 @@ prioritylevelconfigurations.flowcontrol.apiserver.k8s.io/v1beta3/status [create,
 
 ## Internals
 
-This section presents how KAL works.
+This section explains how KAL works under the hood.
 
 ### Inspiration
 
@@ -151,7 +151,7 @@ Based on the article of [Raesene - Fun with Kubernetes Authorization Auditing](h
 
 #### API Verbs
 
-https://kubernetes.io/docs/reference/access-authn-authz/authorization/#determine-the-request-verb
+[Kuberntes Authorization Request Verbs](https://kubernetes.io/docs/reference/access-authn-authz/authorization/#determine-the-request-verb)
 
 - create
 - get
@@ -192,4 +192,4 @@ func main() {
 
 ## License
 
-You can check our licensing scheme [here](./LICENSE)
+You can check our licensing scheme [here](./LICENSE).
