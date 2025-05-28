@@ -9,7 +9,7 @@ This CLI connects to the provided Kubernetes Cluster, list all resources, and fo
 ### Go Install
 
 ```sh
-go install -v github.com/ing-bank/kal
+go install -v github.com/ing-bank/kal@latest
 ```
 
 ### Compile from source
