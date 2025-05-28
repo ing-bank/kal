@@ -60,11 +60,24 @@ kal
 
 Expected output:
 ```sh
-[ERR] could not create a kubernetes custom client error=invalid configuration for kubernetes custom client
+############################
+#                          #
+# ██╗  ██╗ █████╗ ██╗      #
+# ██║ ██╔╝██╔══██╗██║      #
+# █████╔╝ ███████║██║      #
+# ██╔═██╗ ██╔══██║██║      #
+# ██║  ██╗██║  ██║███████╗ #
+# ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝ #
+# Kubernetes Authz Listing #
+############################
+
+[!] legal disclaimer: Usage of kal for attacking targets without prior mutual consent is illegal. It is the end user\'s responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+
+
 [INF] running from namespace = default
 [INF] found 105 resources and sub-resources
-bindings/v1 [escalate,watch,delete,get,create,update,impersonate,deletecollection,list,bind,patch,approve] [default]
-componentstatuses/v1 [patch,list,get,escalate,create,deletecollection,bind,watch,approve,update,impersonate,delete] [CLUSTER_WIDE]
+bindings/v1 [create,get,bind,patch,escalate,deletecollection,list,impersonate,watch,update,delete,approve] [default]
+componentstatuses/v1 [create,get,delete,deletecollection,escalate,impersonate,update,patch,approve,watch,bind,list] [CLUSTER_WIDE]
 ...[snip]...
 prioritylevelconfigurations.flowcontrol.apiserver.k8s.io/v1 [escalate,impersonate,list,approve,watch,deletecollection,get,patch,update,delete,bind,create] [CLUSTER_WIDE]
 prioritylevelconfigurations.flowcontrol.apiserver.k8s.io/v1/status [escalate,impersonate,patch,watch,list,create,get,delete,update,approve,deletecollection,bind] [CLUSTER_WIDE]

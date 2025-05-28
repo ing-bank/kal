@@ -31,28 +31,19 @@ func FromOptions(o *types.Options) *Runner {
 	var err error
 
 	client, err = getCustomClient(o)
-	if err != nil {
-		gologger.Error().
-			Str("error", err.Error()).
-			Msg("could not create a kubernetes custom client\n")
-	}
 
 	if client == nil {
 		client, err = getKubeConfigClient(o)
-		if err != nil {
-			gologger.Error().
-				Str("error", err.Error()).
-				Msg("could not create a kubernetes kubeconfig client\n")
-		}
 	}
 
 	if client == nil {
 		client, err = getInPodClient(o)
-		if err != nil {
-			gologger.Error().
-				Str("error", err.Error()).
-				Msg("could not create an in pod kubernetes client\n")
-		}
+	}
+
+	if err != nil {
+		gologger.Error().
+			Str("error", err.Error()).
+			Msg("could not create kubernetes client\n")
 	}
 
 	if client == nil {
@@ -62,8 +53,8 @@ func FromOptions(o *types.Options) *Runner {
 
 	r.KubernetesClient = client
 
-	if r.Namespace == "" && o.Kubernetes.ApiToken != "" {
-		r.Namespace = myK8s.GrabNamespaceFromToken(o.Kubernetes.ApiToken)
+	if r.Namespace == "" {
+		r.Namespace = o.Kubernetes.Namespace
 	}
 
 	return r
@@ -112,7 +103,7 @@ func getKubeConfigClient(o *types.Options) (*kubernetes.Clientset, error) {
 
 	if o.Kubernetes.ApiToken != "" {
 		gologger.Warning().
-			Msg("using provided service account token instead kubeconfig configuration")
+			Msg("using provided service account token instead of kubeconfig configuration")
 		config.BearerToken = o.Kubernetes.ApiToken
 	} else {
 		o.Kubernetes.ApiToken = config.BearerToken
@@ -143,7 +134,7 @@ func getInPodClient(o *types.Options) (*kubernetes.Clientset, error) {
 }
 
 func setDefaultConfigOptions(config *rest.Config, o *types.Options) {
-	// removing rate limiting...
+	// remove rate limiting...
 	if o.Kubernetes.QPS > 0 {
 		config.QPS = o.Kubernetes.QPS
 	} else {
@@ -166,6 +157,10 @@ func setDefaultConfigOptions(config *rest.Config, o *types.Options) {
 		config.TLSClientConfig = rest.TLSClientConfig{
 			Insecure: o.Kubernetes.InsecureTLS,
 		}
+	}
+
+	if o.Kubernetes.Namespace == "" {
+		o.Kubernetes.Namespace = myK8s.GrabNamespaceFromToken(config.BearerToken)
 	}
 }
 
