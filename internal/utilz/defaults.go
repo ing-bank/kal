@@ -1,7 +1,6 @@
-package types
+package utilz
 
-// Banner is KAL's banner
-const Banner = `
+const BANNER = `
 ############################
 #                          #
 # ██╗  ██╗ █████╗ ██╗      #
@@ -14,5 +13,7 @@ const Banner = `
 ############################                    
 `
 
-// Disclaimer is the legal disclaimer for KAL
-const Disclaimer = "Usage of kal for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program"
+const DISCLAIMER = `[!] Usage of kal for attacking targets without prior mutual consent is illegal. 
+[!] It is the end user's responsibility to obey all applicable local, state and 
+[!] federal laws. Developers assume no liability and are not responsible for 
+[!] any misuse or damage caused by this program.`
